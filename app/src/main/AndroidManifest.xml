@@ -40,19 +40,7 @@
         <service
             android:name=".PontoIntentService"
             android:exported="false" />
-        <service
-            android:name=".PontoService"
-            android:enabled="true"
-            android:exported="true" />
 
-        <receiver
-            android:name=".MyReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.example.flus.ponto.action.MARCAR" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

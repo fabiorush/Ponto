@@ -43,9 +43,6 @@ public class MainActivity extends AppCompatActivity {
                             signInOptions);
 
                     startActivityForResult(googleSignInClient.getSignInIntent(), 2);
-
-//                    Snackbar.make(view, "googlePlayServicesAvailable: ", Snackbar.LENGTH_LONG)
-//                            .setAction("Action", null).show();
                 }
             }
         });

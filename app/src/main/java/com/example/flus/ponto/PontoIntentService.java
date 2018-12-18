@@ -2,17 +2,13 @@ package com.example.flus.ponto;
 
 import android.app.IntentService;
 import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.widget.RemoteViews;
-import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -40,14 +36,13 @@ import java.util.Date;
  */
 public class PontoIntentService extends IntentService {
     private static final String TAG = "FLUSSS";
-    // TODO: Rename actions, choose action names that describe tasks that this
-    // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
-    public static final String ACTION_MARCAR = "com.example.flus.ponto.action.MARCAR";
-    private static final String ACTION_BAZ = "com.example.flus.ponto.action.BAZ";
 
-    // TODO: Rename parameters
-    private static final String EXTRA_PARAM1 = "com.example.flus.ponto.extra.PARAM1";
-    private static final String EXTRA_PARAM2 = "com.example.flus.ponto.extra.PARAM2";
+    public static final String ACTION_MARCAR = "com.example.flus.ponto.action.MARCAR";
+//    private static final String ACTION_BAZ = "com.example.flus.ponto.action.BAZ";
+//
+//    // TODO: Rename parameters
+//    private static final String EXTRA_PARAM1 = "com.example.flus.ponto.extra.PARAM1";
+//    private static final String EXTRA_PARAM2 = "com.example.flus.ponto.extra.PARAM2";
 
     /**
      * Global instance of the HTTP transport.
@@ -62,44 +57,8 @@ public class PontoIntentService extends IntentService {
         super("PontoIntentService");
     }
 
-    /**
-     * Starts this service to perform action Foo with the given parameters. If
-     * the service is already performing a task this action will be queued.
-     *
-     * @see IntentService
-     */
-    // TODO: Customize helper method
-    public static void startActionMarcar(Context context, String param1, String param2) {
-        Intent intent = new Intent(context, PontoIntentService.class);
-        intent.setAction(ACTION_MARCAR);
-        intent.putExtra(EXTRA_PARAM1, param1);
-        intent.putExtra(EXTRA_PARAM2, param2);
-        context.startService(intent);
-    }
-
-    /**
-     * Starts this service to perform action Baz with the given parameters. If
-     * the service is already performing a task this action will be queued.
-     *
-     * @see IntentService
-     */
-    // TODO: Customize helper method
-    public static void startActionBaz(Context context, String param1, String param2) {
-        Intent intent = new Intent(context, PontoIntentService.class);
-        intent.setAction(ACTION_BAZ);
-        intent.putExtra(EXTRA_PARAM1, param1);
-        intent.putExtra(EXTRA_PARAM2, param2);
-        context.startService(intent);
-    }
-
     @Override
     protected void onHandleIntent(Intent intent) {
-//        Notification.Builder builder = new Notification.Builder(getBaseContext())
-//                .setSmallIcon(R.drawable.example_appwidget_preview)
-//                .setTicker("Your Ticker") // use something from something from R.string
-//                .setContentTitle("Your content title") // use something from something from
-//                .setContentText("Your content text") // use something from something from
-//                .setProgress(0, 0, true); // display indeterminate progress
 
         Notification notification = new NotificationCompat.Builder(this, "PONTOSERVICE")
                 .setContentTitle("Ponto")
@@ -111,15 +70,12 @@ public class PontoIntentService extends IntentService {
             final String action = intent.getAction();
             if (ACTION_MARCAR.equals(action)) {
                 int appWidgetId = intent.getIntExtra("appWidgetId", 65);
-                Log.d(TAG, "Chegou aqui! appWidgetId: " + appWidgetId);
+//                Log.d(TAG, "Chegou aqui! appWidgetId: " + appWidgetId);
+                handleActionMarcar(appWidgetId);
+//            } else if (ACTION_BAZ.equals(action)) {
 //                final String param1 = intent.getStringExtra(EXTRA_PARAM1);
 //                final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionMarcar(appWidgetId);
-//                handleActionMarcar(param1, param2);
-            } else if (ACTION_BAZ.equals(action)) {
-                final String param1 = intent.getStringExtra(EXTRA_PARAM1);
-                final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionBaz(param1, param2);
+//                handleActionBaz(param1, param2);
             }
         }
         stopForeground(true);
@@ -182,14 +138,14 @@ public class PontoIntentService extends IntentService {
         }
     }
 
-    /**
-     * Handle action Baz in the provided background thread with the provided
-     * parameters.
-     */
-    private void handleActionBaz(String param1, String param2) {
-        // TODO: Handle action Baz
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
+//    /**
+//     * Handle action Baz in the provided background thread with the provided
+//     * parameters.
+//     */
+//    private void handleActionBaz(String param1, String param2) {
+//        // TODO: Handle action Baz
+//        throw new UnsupportedOperationException("Not yet implemented");
+//    }
 
     public HttpRequestInitializer setHttpTimeout(
             final HttpRequestInitializer requestInitializer) {
