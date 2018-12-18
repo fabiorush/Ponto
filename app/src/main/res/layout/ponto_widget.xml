@@ -1,10 +1,11 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#09C"
+    android:layout_height="60dp"
+    android:background="#00000000"
     android:padding="@dimen/widget_margin">
+    <!--android:padding="@dimen/widget_margin"-->
 
     <LinearLayout
         android:id="@+id/section_id"
@@ -14,7 +15,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
-        android:background="@android:color/background_dark"
+        android:background="#30000000"
+        android:paddingRight="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -22,18 +24,21 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:paddingTop="20dp"
-            android:text="WidgetID"
-            android:textAlignment="center"
+            android:text="-"
+            android:gravity="center"
             android:textColor="@android:color/darker_gray"
             android:textSize="24sp" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
+
+        <ImageButton
+            android:id="@+id/button"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="+" />
+            android:layout_gravity="center"
+            android:background="@drawable/circle_button"
+            android:src="@drawable/ic_alarm_yellow"/>
+
 
     </LinearLayout>
-</RelativeLayout>
+</FrameLayout>

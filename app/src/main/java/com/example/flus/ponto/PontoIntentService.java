@@ -23,9 +23,7 @@ import com.google.api.services.script.Script;
 import com.google.api.services.script.model.ExecutionRequest;
 import com.google.api.services.script.model.Operation;
 
-import java.text.SimpleDateFormat;
 import java.util.Collections;
-import java.util.Date;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -63,7 +61,7 @@ public class PontoIntentService extends IntentService {
         Notification notification = new NotificationCompat.Builder(this, "PONTOSERVICE")
                 .setContentTitle("Ponto")
                 .setContentText("Setando o ponto")
-                .setSmallIcon(R.drawable.ic_alarm_yellow_24dp).build();
+                .setSmallIcon(R.drawable.ic_alarm_yellow).build();
         startForeground(1, notification);
 
         if (intent != null) {
@@ -114,9 +112,11 @@ public class PontoIntentService extends IntentService {
                             mService.scripts().run(scriptId, request).execute();
 
                     if (op.getError() == null) {
+                        String date = (String) op.getResponse().get("result");
+                        Log.d(TAG, "Date: " + date);
                         baterPonto = false;
                         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                        sp.edit().putString("LastPonto", new SimpleDateFormat("H:mm").format(new Date())).apply();
+                        sp.edit().putString("LastPonto", date).apply();
 
                         Intent intentUpdate = new Intent(getApplicationContext(), PontoWidget.class);
                         intentUpdate.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);

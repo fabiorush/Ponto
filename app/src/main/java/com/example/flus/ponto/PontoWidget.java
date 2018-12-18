@@ -34,7 +34,7 @@ public class PontoWidget extends AppWidgetProvider {
             pontoServiceIntent.setAction(PontoIntentService.ACTION_MARCAR);
             pontoServiceIntent.putExtra("appWidgetId", appWidgetId);
             PendingIntent pendingIntent = PendingIntent.getForegroundService(context, appWidgetId, pontoServiceIntent, FLAG_UPDATE_CURRENT);
-            views.setOnClickPendingIntent(R.id.button2, pendingIntent);
+            views.setOnClickPendingIntent(R.id.button, pendingIntent);
 
             // Instruct the widget manager to update the widget
             appWidgetManager.updateAppWidget(appWidgetId, views);
